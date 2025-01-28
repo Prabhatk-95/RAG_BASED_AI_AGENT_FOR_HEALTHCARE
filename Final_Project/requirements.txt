@@ -1,1 +1,11 @@
+langchain==0.0.142
+langchain_community==0.0.14
+langchain-pinecone==0.0.1
+langchain-chroma==0.0.1
+langchain-groq==0.1.0
+streamlit==1.22.0
+python-dotenv==1.0.0
+pinecone-client==2.0.0
+sentence-transformers==2.2.0
+chroma==0.3.0
 
