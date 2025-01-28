@@ -34,7 +34,7 @@ def main():
         layout="centered"
     )
 
-    st.title("Medical-bot 🏥")
+    st.title("🩺Medical-bot 🏥")
     st.write("Choose how you want to provide data for the chatbot.")
 
     # Sidebar inputs
