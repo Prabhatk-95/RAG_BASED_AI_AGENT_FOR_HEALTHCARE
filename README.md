@@ -3,12 +3,13 @@
 
 ## Project Overview
 
-This project aims to build a healthcare chatbot using Retrieval-Augmented Generation (RAG) techniques. The chatbot utilizes a combination of LangChain, Groq, ChromaDB, and Streamlit to provide intelligent and context-aware answers based on the given medical data. Users can interact with the bot by uploading PDFs, entering URLs, or using default pre-uploaded data.
+This project aims to build a healthcare chatbot using Retrieval-Augmented Generation (RAG) techniques. The chatbot utilizes a combination of LangChain, Groq, ChromaDB, Pinecone, and Streamlit to provide intelligent and context-aware answers based on the given medical data. Users can interact with the bot by uploading PDFs, entering URLs, or using default pre-uploaded data.
 
 ### Technologies Used:
 - **LangChain**: A framework to work with language models and handle tasks like document loading, embedding, and text splitting.
 - **Groq**: A high-performance model for fast inference.
 - **ChromaDB**: A vector database used for storing and searching document embeddings.
+- **Pinecone**: A vector search service used for efficient document retrieval.
 - **Streamlit**: A web framework for creating interactive web applications.
 - **Python**: The programming language used to implement the project.
 
@@ -33,9 +34,10 @@ pip install -r requirements.txt
 ```
 
 ### 3. Set up environment variables
-Create a `.env` file in the project root directory and add your Groq API key:
+Create a `.env` file in the project root directory and add your Groq API key and Pinecone API key:
 ```
 GROQ_API_KEY=your_api_key_here
+PINECONE_API_KEY=your_pinecone_api_key_here
 ```
 
 ### 4. Run the Streamlit App
@@ -89,8 +91,6 @@ Downloads and returns the HuggingFace embeddings model.
 
 #### Returns:
 - HuggingFaceEmbeddings object.
-
-
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
