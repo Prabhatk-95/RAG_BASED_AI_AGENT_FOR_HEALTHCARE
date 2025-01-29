@@ -2,16 +2,13 @@
 import streamlit as st
 import os
 from dotenv import load_dotenv
-from langchain import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 from langchain_pinecone import PineconeVectorStore
 from langchain.chains import RetrievalQA
 from langchain_chroma import Chroma
 from langchain_groq import ChatGroq
 from src.helper import download_huggingface_embedding, load_data_from_uploaded_pdf,load_data_from_url, text_split
-import nltk
-from langchain_core.prompts import PromptTemplate
-# Ensure nltk resources are downloaded
-nltk.download('punkt')
+
 def main():
     # Basic configurations
     PINECONE_INDEX_NAME = "medical-chatbot"
@@ -29,13 +26,13 @@ def main():
 
     # Configure Streamlit page settings
     st.set_page_config(
-        page_title="Medical-bot",
+        page_title="Healthcare-bot",
         page_icon="🤖",
         layout="centered"
     )
 
-    st.title("🩺Medical-bot 🏥")
-    st.write("Choose how you want to provide data for the chatbot.")
+    st.title("      🏥  Healthcare - Bot  🩺 ")
+    st.write("Choose how you want to provide medical data for the chatbot.")
 
     # Sidebar inputs
     uploaded_file = st.sidebar.file_uploader("Upload a PDF file", type="pdf")
@@ -79,6 +76,7 @@ def main():
             collection_name="URL_database",
             persist_directory="./chroma_db_url"
         )
+        docsearch.add_documents(doc_chucks)
         st.success("Index loaded successfully!")
 
     elif use_default:
@@ -94,14 +92,15 @@ def main():
 
     # Define prompt template
     prompt_template = """
-    Use the given context to provide an appropriate answer for the user's question.
-    If you don't know the answer, say you don't know, but do not fabricate an answer.
+    Use ONLY the given information context to generate an appropriate answer for the user's question.
+    If the answer is not present in the context, respond with "I don't know the answer based on the provided information."
 
     Context: {context}
     Question: {question}
-
+    Only return the appropriate answer based strictly on the given context.
     Helpful answer:
     """
+
     PROMPT = PromptTemplate(
         template=prompt_template,
         input_variables=["context", "question"]
@@ -140,8 +139,9 @@ def main():
 
     # Display chat history
     for question, answer in st.session_state["chat_history"]:
-        st.write(f"**You:** {question}")
-        st.write(f"**Bot:** {answer}")
+        st.write(f" 🧑‍💼 :  {question}")  
+        st.write(f" 💉 :  {answer}") 
+
 
 if __name__ == "__main__":
-    main()
+    main()      
